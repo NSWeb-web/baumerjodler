@@ -1,0 +1,739 @@
+/* Chelleländer Jodelchörli Bauma
+  Autor: NSWeb
+
+  °°°Inhalt°°°
+  ************
+  01: Reset
+  02: Imports
+  03: Variables
+  04: Body / General
+  05: Header 
+    05.01 Navigation
+    05.02 Beschreibung
+  06: Auftritte
+  07: Jodler und Jodlerinnen
+  08: Unsere Geschichte
+  09: Kontakt
+  10: Galerie
+  11: footer
+
+*/
+/* _______________________________________________________________________________________________________________________________________________________________ */
+
+/* --------- */
+/* 01: Reset */
+/* --------- */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+body {
+  margin: 0;
+  line-height: inherit;
+}
+/* für Firefox */
+hr {
+  height: 1px;
+  color: inherit;
+  background-color: currentColor;
+}
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------- */
+/* 02: Imports */
+/* ----------- */
+
+@font-face {
+  font-family: "chockoshake";
+  src: url("fonts/Choco\ Shake.otf");
+}
+@font-face {
+  font-family: "outfit-bold";
+  src: url("fonts/Outfit-Black.ttf");
+}
+@font-face {
+  font-family: "outfit-medium";
+  src: url("fonts/Outfit-Medium.ttf");
+}
+
+/* ------------- */
+/* 03: Variables */
+/* ------------- */
+
+:root {
+  /* colors */
+  --pri-color: #000;
+  --sec-color: #603813;
+  --ter-color: #faebd6;
+  --qua-color: #809393;
+  --qui-color: #fff;
+  --six-color: #f7931e;
+  /* font-size */
+  --bigtitle-size: 60px;
+  --title-size: 36px;
+  --semi-title-size: 24px;
+  --text-size: 24px;
+  --button-text-size: 18px;
+  --info-text-size: 18px;
+  /* font weights */
+  --bold: 700;
+  --semi-bold: 600;
+  --medium: 500;
+  /* boxshadow */
+  --boxshadow: 0px 3px 10px var(--qua-color);
+  /* width */
+  --width: 80%;
+}
+
+/* ------------------ */
+/* 04: Body / General */
+/* ------------------ */
+
+body {
+  background-image: url("bilder/JPG/hintergrund.jpg");
+  background-color: rgba(0, 0, 0, 0.3); /* Dunkles Overlay */
+  background-blend-mode: overlay; /* Überlagerung des Hintergrunds */
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.title {
+  font-family: outfit-bold, sans-serif;
+  font-size: var(--title-size);
+  margin: 0;
+}
+
+.text {
+  font-family: outfit-medium, sans-serif;
+  font-size: var(--text-size);
+}
+
+.bold {
+  font-family: outfit-bold, sans-serif;
+  font-size: var(--text-size);
+}
+
+.info-text {
+  font-family: outfit-medium, sans-serif;
+  font-size: var(--info-text-size);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: chockoshake, sans-serif;
+  font-size: var(--bigtitle-size);
+  color: var(--sec-color);
+  margin: 150px auto 50px auto;
+}
+
+#auftritte,
+#jodler,
+#geschichte,
+#kontakt,
+#galerie,
+.agb,
+.impressum,
+footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-color: rgba(250, 235, 214, 0.8);
+  width: 1100px;
+  margin: 0 auto;
+}
+
+footer {
+  background-color: var(--ter-color);
+}
+
+/* ---------- */
+/* 05: Header */
+/* ---------- */
+
+/* Header mit Hintergrundbild */
+header {
+  position: relative;
+  background-image: url("bilder/JPG/start_hintergrund.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; /* Bild immer den Bereich abdecken */
+  background-position: center; /* Bild wird zentriert */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Zentriert den Inhalt vertikal */
+  align-items: center; /* Zentriert den Inhalt horizontal */
+}
+
+/* Der dunkle Vordergrund (Overlay) */
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  opacity: 0.8;
+  z-index: 1; /* Stellt sicher, dass das Overlay über dem Hintergrundbild liegt */
+}
+
+/* 05.01 Navigation */
+/* ---------------- */
+
+#navbar.hidden {
+  top: -100px;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  background-color: var(--sec-color);
+  z-index: 2;
+}
+
+nav .nav-logo {
+  display: flex;
+  height: 90px;
+}
+
+nav .nav-logo:hover {
+  opacity: 0.8;
+}
+
+nav img {
+  margin: 10px 0;
+  -webkit-filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  min-width: 200px;
+}
+
+nav .main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav > li {
+  font-family: chockoshake, sans-serif;
+  font-size: var(--semi-title-size);
+  color: var(--qui-color);
+  padding: 0 20px;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.main-nav > li:hover {
+  color: var(--six-color);
+}
+
+/* hamburger-menue */
+.hamburger-menue,
+.hamburger-menue input {
+  display: none;
+}
+
+/* 05.02 Beschreibung */
+/* ------------------ */
+
+/* Startbeschreibung */
+.startdescription {
+  position: relative;
+  z-index: 2; /* Stellt sicher, dass der Text über dem Overlay und Hintergrundbild liegt */
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* Überschrift (h1) */
+h1 {
+  font-family: outfit-bold, sans-serif;
+  font-size: var(--bigtitle-size); /* Dynamische Schriftgröße (siehe unten) */
+  color: var(--six-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin-top: 700px;
+}
+
+/* ------------- */
+/* 06: Auftritte */
+/* ------------- */
+
+.auftritte {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.auftritte ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: var(--width); /* Breite der Liste */
+}
+.auftritte li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #989797;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+.auftritte li:last-child {
+  border-bottom: none;
+}
+
+.event-button {
+  background-color: var(--sec-color);
+  color: var(--qui-color);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-family: outfit-medium, sans-serif;
+  font-size: var(--button-text-size);
+}
+.event-button:hover {
+  background-color: var(--six-color);
+}
+.auftritte .info {
+  flex-grow: 1;
+}
+.event-button {
+  margin-left: 20px;
+}
+
+/* -------------------------- */
+/* 07: Jodler und Jodlerinnen */
+/* -------------------------- */
+
+#jodler .jodler {
+  margin: 50px auto;
+  width: var(--width);
+}
+#jodler .title {
+  margin-bottom: 40px;
+}
+.jodler_gruppe_box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+#jodler .box {
+  width: 250px;
+  text-align: center;
+  background-color: var(--sec-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  box-shadow: var(--boxshadow);
+}
+#jodler .box img {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 10px;
+}
+#jodler .box .info-text {
+  margin: 0;
+  padding: 10px;
+  color: var(--qui-color);
+}
+#jodler .box .text {
+  margin: 10px 0 10px 0;
+  color: var(--six-color);
+}
+
+/* --------------------- */
+/* 08: Unsere Geschichte */
+/* --------------------- */
+
+#geschichte .info {
+  width: var(--width);
+  margin: 50px auto;
+}
+
+#geschichte .text {
+  flex: 1;
+}
+
+#geschichte .text-image-wrapper {
+  display: block;
+}
+
+#geschichte .text-image-wrapper img {
+  float: right;
+  margin-left: 20px;
+  max-width: 500px;
+  height: auto;
+  box-shadow: var(--boxshadow);
+}
+#geschichte .text-image-wrapper-reverse img {
+  float: left;
+  margin-right: 20px;
+  max-width: 500px;
+  height: auto;
+  box-shadow: var(--boxshadow);
+}
+
+#geschichte .event-button {
+  position: relative;
+  left: 0;
+  top: 50px;
+  margin-left: 0;
+}
+
+/* ----------- */
+/* 09: Kontakt */
+/* ----------- */
+#kontakt {
+  padding-top: 50px;
+}
+
+#kontakt .info {
+  margin: 50px auto;
+  width: var(--width);
+}
+#kontakt .info .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px auto 50px auto;
+}
+
+#kontakt .info p {
+  margin: 0px auto;
+}
+
+/* ----------- */
+/* 10: Galerie */
+/* ----------- */
+
+#galerie {
+  padding: 0 100px;
+  text-align: center;
+}
+
+#galerie .info {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden; /* Verhindert, dass Inhalte aus der Box ragen */
+  border-radius: 10px;
+  box-shadow: var(--boxshadow);
+  margin-bottom: 50px;
+  box-sizing: border-box; /* Stellt sicher, dass Padding und Border innerhalb der Box sind */
+}
+
+.gallery-item img {
+  width: 440px;
+  height: 290px;
+  object-fit: cover;
+  object-position: top;
+  display: block; /* Verhindert, dass das Bild als Inline-Element behandelt wird */
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* Lightbox-Overlay */
+.lightbox {
+  display: none; /* Unsichtbar bis ein Bild angeklickt wird */
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: var(--qui-color);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ---------- */
+/* 11: footer */
+/* ---------- */
+
+footer {
+  /* background-color: var(--ter-color); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 75px 0;
+  margin: 0 auto;
+}
+
+footer img {
+  width: 300px;
+}
+
+footer .links {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+.links a {
+  font-family: interstate-comp, sans-serif;
+  font-size: var(--info-text-size);
+  cursor: pointer;
+}
+
+.links a:hover {
+  text-decoration: underline;
+  color: var(--sec-color);
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 40px 0;
+}
+
+.icons a {
+  color: var(--qui-color);
+}
+
+.icons img {
+  width: 35px;
+  cursor: pointer;
+}
+
+.icons img:hover {
+  opacity: 0.7;
+}
+
+/* ____________________________________________________________________________ */
+
+@media (max-width: 1200px) {
+  .hamburger-menue {
+    display: block;
+  }
+
+  .hamburger {
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    margin-left: -2em;
+    margin-top: -50px;
+    width: 2em;
+    height: 45px;
+    z-index: 5;
+  }
+
+  .hamburger div {
+    position: relative;
+    width: 50px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--qui-color);
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  #toggle:checked + .hamburger .top-bun {
+    transform: rotate(-45deg);
+    margin-top: 25px;
+  }
+  #toggle:checked + .hamburger .bottom-bun {
+    opacity: 0;
+    transform: rotate(45deg);
+  }
+  #toggle:checked + .hamburger .meat {
+    transform: rotate(45deg);
+    margin-top: -7px;
+  }
+
+  nav .main-nav {
+    display: none;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    padding: 20px 0;
+    background: var(--sec-color);
+  }
+
+  .main-nav li {
+    margin: 20px 0;
+  }
+
+  header {
+    height: auto;
+  }
+
+  #auftritte,
+  #jodler,
+  #geschichte,
+  #kontakt,
+  #galerie,
+  .agb,
+  .impressum,
+  footer {
+    width: 800px;
+  }
+  #geschichte .text-image-wrapper img {
+    width: 350px;
+  }
+  #geschichte .text-image-wrapper-reverse img {
+    width: 350px;
+  }
+  .jodler_gruppe_box {
+    justify-content: space-between;
+  }
+}
+
+/* ____________________________________________________________________________ */
+
+@media (max-width: 900px) {
+  :root {
+    /* font-size */
+    --bigtitle-size: 32px;
+    --title-size: 26px;
+    --semi-title-size: 18px;
+    --text-size: 14px;
+    --info-text-size: 11px;
+    --button-text-size: 11px;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 25px auto 12.5px auto;
+  }
+
+  #auftritte,
+  #jodler,
+  #geschichte,
+  #kontakt,
+  #galerie,
+  .agb,
+  .impressum,
+  footer {
+    width: 350px;
+    padding: 25px 0 12.5px 0;
+  }
+
+  header {
+    height: 80vh;
+  }
+  h1 {
+    margin-top: 500px;
+  }
+  nav {
+    padding: 10px 15px;
+  }
+  nav img {
+    margin: 0;
+    min-width: 75px;
+    width: 75px;
+  }
+  nav .nav-logo {
+    height: 60px;
+  }
+  #auftritte .event-button {
+    padding: 5px 5px;
+    margin-left: 0;
+  }
+  #geschichte .text-image-wrapper img {
+    width: 250px;
+    float: none;
+    margin-left: 15px;
+    margin-top: 10px;
+  }
+  #geschichte .text-image-wrapper-reverse img {
+    width: 250px;
+    float: none;
+    margin-left: 15px;
+    margin-right: 0px;
+  }
+
+  .gallery-item img {
+    width: 250px;
+    height: 200px;
+  }
+
+  .jodler_gruppe_box {
+    justify-content: space-around;
+  }
+
+  #jodler .info {
+    width: 90vw;
+    margin: 25px auto;
+  }
+
+  #kontakt .info .box {
+    margin: 25px auto 12.5px auto;
+  }
+  footer {
+    padding: 40px 0;
+  }
+
+  footer img {
+    width: 200px;
+  }
+}
