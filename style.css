@@ -452,6 +452,7 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   justify-items: center;
+  padding-top: 50px;
 }
 
 .gallery-item {
