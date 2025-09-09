@@ -96,54 +96,61 @@ window.addEventListener(
 // ----------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
-  const today = new Date(); // Heutiges Datum
+  const today = new Date();
 
-  // Hilfsfunktion zum Konvertieren von Datumsangaben
+  const months = {
+    Januar: 0,
+    Februar: 1,
+    März: 2,
+    April: 3,
+    Mai: 4,
+    Juni: 5,
+    Juli: 6,
+    August: 7,
+    September: 8,
+    Oktober: 9,
+    November: 10,
+    Dezember: 11,
+  };
+
   function parseDate(dateString) {
-    const months = {
-      Januar: 0,
-      Februar: 1,
-      März: 2,
-      April: 3,
-      Mai: 4,
-      Juni: 5,
-      Juli: 6,
-      August: 7,
-      September: 8,
-      Oktober: 9,
-      November: 10,
-      Dezember: 11,
-    };
+    // Ersetze / . - durch Leerzeichen, entferne doppelte Leerzeichen
+    const cleaned = dateString
+      .replace(/[./-]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    // Teile in Wörter
+    const parts = cleaned.split(" ");
 
-    // Entfernen von überflüssigen Zeichen und Aufteilen der Datumsteile
-    const parts = dateString.replace(/[\s./-]+/, " ").split(" ");
+    let day, month, year;
 
-    if (parts.length >= 3) {
-      const day = parseInt(parts[0], 10);
-      const month = months[parts[1]]; // Monat in Zahlen
-      const year = parseInt(parts[2], 10);
-
-      return new Date(year, month, day); // Gib ein Date-Objekt zurück
+    if (parts.length === 3) {
+      // normales Format Tag Monat Jahr
+      day = parseInt(parts[0], 10);
+      month = months[parts[1]];
+      year = parseInt(parts[2], 10);
+    } else if (parts.length === 4) {
+      // Bereich, z.B. 04 06 Juli 2025 → nehme den letzten Tag
+      day = parseInt(parts[1], 10);
+      month = months[parts[2]];
+      year = parseInt(parts[3], 10);
+    } else {
+      return null; // unbekanntes Format
     }
-    return null;
+
+    return new Date(year, month, day);
   }
 
   document.querySelectorAll("#auftritte li").forEach(function (event) {
-    const dateText = event.querySelector(".title").innerText; // Hole das Datums-Textfeld
+    const dateText = event.querySelector(".title").innerText;
+    const eventDate = parseDate(dateText);
 
-    // Wenn mehrere Daten angegeben sind, nimm das späteste Datum
-    const dateParts = dateText.split("/");
-    const eventDate =
-      dateParts.length > 1
-        ? parseDate(dateParts[dateParts.length - 1].trim())
-        : parseDate(dateText.trim());
-
-    // Vergleich des Event-Datums mit dem aktuellen Datum
     if (eventDate && eventDate < today) {
-      event.style.display = "none"; // Event ausblenden, wenn es in der Vergangenheit liegt
+      event.style.display = "none";
     }
   });
 });
+
 // _______________________________________________________________________________________________________________________________________________________________
 
 // 03: Galerie lightbox
