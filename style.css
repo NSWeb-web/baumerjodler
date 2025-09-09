@@ -224,7 +224,7 @@ nav {
   justify-content: space-between;
   padding: 0 30px;
   background-color: var(--sec-color);
-  z-index: 2;
+  z-index: 99;
 }
 
 nav .nav-logo {
