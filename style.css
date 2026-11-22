@@ -253,7 +253,9 @@ nav .main-nav {
   font-size: var(--semi-title-size);
   color: var(--qui-color);
   padding: 0 20px;
-  transition: color 0.3s ease, font-weight 0.3s ease;
+  transition:
+    color 0.3s ease,
+    font-weight 0.3s ease;
 }
 
 .main-nav > li:hover {
@@ -332,6 +334,52 @@ h1 {
 }
 .event-button {
   margin-left: 20px;
+}
+
+/* Bild-Anpassung und Zentrierung */
+.flyer-container,
+.flyer-download {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.flyer-container img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Schöner dezenter Schatten */
+}
+
+/* Button-Design auf Basis deiner Vorgabe */
+.flyer-download {
+  margin-top: 50px;
+}
+
+.flyer-download a {
+  font-family: interstate-comp, sans-serif;
+  font-size: var(--info-text-size);
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(
+    --sec-color
+  ); /* Nutzt deine Sekundärfarbe als Hintergrund */
+  color: #fff; /* Textfarbe Weiss für guten Kontrast */
+  border-radius: 6px;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.flyer-download a:hover {
+  text-decoration: none; /* Kein Unterstrich beim Hover, da Button */
+  opacity: 0.9;
+  transform: translateY(-2px); /* Kleiner "Heben"-Effekt beim Hover */
 }
 
 /* -------------------------- */
